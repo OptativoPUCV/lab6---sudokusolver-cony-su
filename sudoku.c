@@ -62,7 +62,7 @@ int is_valid(Node* n)
       {
          for(int j = 0; j < 9; j+=3)
          {
-            int contador_submatriz[9]= {0};
+            int contador_submatriz[10]= {0};
             for(int sub_i = 0; sub_i < 3; sub_i++)
             {
                for(int sub_j = 0; sub_j < 3; sub_j++)
@@ -78,25 +78,25 @@ int is_valid(Node* n)
    //reviso las filas
    for(int k = 0; k < 9; k++)
    {
-      int contador_filas[9] = {0};
+      int contador_filas[10] = {0};
       for(int x = 0; x < 9; x++)
       {
          int num = n->sudo[k][x];
          contador_filas[num-1]++;
          if(contador_filas[num-1] > 1) return 0;
-         break;
       }
    }
 
    //reviso las columnas
    for (int j = 0; j < 9; j++) {
-        int contador[9] = {0};
+        int contador[10] = {0};
         for (int i = 0; i < 9; i++) {
             int num = n->sudo[i][j];
             contador[num - 1]++;
             if (contador[num - 1] > 1) {
                 return 0;
             }
+           
         }
     }
 
