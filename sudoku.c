@@ -64,8 +64,10 @@ int is_valid(Node* n)
            for (int sub_i = 0; sub_i < 3; sub_i++) {
                for (int sub_j = 0; sub_j < 3; sub_j++) {
                    int num = n->sudo[i + sub_i][j + sub_j];
-                   contador_submatriz[num]++;
-                   if (contador_submatriz[num] > 1) return 0; // Si el número se repite, la submatriz no es válida
+                   if (num != 0) { // Solo contar números diferentes de cero
+                       contador_submatriz[num]++;
+                       if (contador_submatriz[num] > 1) return 0; // Si el número se repite, la submatriz no es válida
+                   }
                }
            }
        }
@@ -78,9 +80,14 @@ int is_valid(Node* n)
        for (int x = 0; x < 9; x++) {
            int num_fila = n->sudo[k][x];
            int num_columna = n->sudo[x][k];
-           contador_filas[num_fila]++;
-           contador_columnas[num_columna]++;
-           if (contador_filas[num_fila] > 1 || contador_columnas[num_columna] > 1) return 0;
+           if (num_fila != 0) { // Solo contar números diferentes de cero
+               contador_filas[num_fila]++;
+               if (contador_filas[num_fila] > 1) return 0;
+           }
+           if (num_columna != 0) { // Solo contar números diferentes de cero
+               contador_columnas[num_columna]++;
+               if (contador_columnas[num_columna] > 1) return 0;
+           }
        }
    }
 
