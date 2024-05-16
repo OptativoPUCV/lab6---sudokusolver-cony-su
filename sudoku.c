@@ -118,7 +118,7 @@ List* get_adj_nodes(Node* n)
             {
                Node *aux = copy(n); //creo un aux que es una copia del nodo
                aux->sudo[i][j] = k; //le asigno el valor k en donde habia un 0
-               pushBack(list, aux); //agregel nodo a la lista
+               if(is_valid(aux)) pushBack(list, aux); //agregel nodo a la lista
             }
          }
       }
