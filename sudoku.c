@@ -68,8 +68,8 @@ int is_valid(Node* n)
                for(int sub_j = 0; sub_j < 3; sub_j++)
                {
                   int num = n->sudo[i+sub_i][j+sub_j];
-                  contador_submatriz[num-1]++;
-                  if(contador_submatriz[num-1] > 1) return 0;
+                  contador_submatriz[num]++;
+                  if(contador_submatriz[num] > 1) return 0;
                }
             }
          }
@@ -82,8 +82,8 @@ int is_valid(Node* n)
       for(int x = 0; x < 9; x++)
       {
          int num = n->sudo[k][x];
-         contador_filas[num-1]++;
-         if(contador_filas[num-1] > 1) return 0;
+         contador_filas[num]++;
+         if(contador_filas[num] > 1) return 0;
       }
    }
 
@@ -92,8 +92,8 @@ int is_valid(Node* n)
         int contador[10] = {0};
         for (int i = 0; i < 9; i++) {
             int num = n->sudo[i][j];
-            contador[num - 1]++;
-            if (contador[num - 1] > 1) {
+            contador[num]++;
+            if (contador[num] > 1) {
                 return 0;
             }
            
