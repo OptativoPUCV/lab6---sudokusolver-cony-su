@@ -69,7 +69,7 @@ int is_valid(Node* n)
                {
                   int num = n->sudo[i+sub_i][j+sub_j];
                   contador_submatriz[num-1]++;
-                  if(contador_submatriz[num-1] > 1) return 1;
+                  if(contador_submatriz[num-1] > 1) return 0;
                }
             }
          }
