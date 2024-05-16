@@ -58,47 +58,31 @@ Para marcar los números que vayan apareciendo en una fila/columna/submatriz pue
 int is_valid(Node* n)
 {
 
-   for(int i = 0; i < 9; i+=3)
-      {
-         for(int j = 0; j < 9; j+=3)
-         {
-            int contador_submatriz[10]= {0};
-            for(int sub_i = 0; sub_i < 3; sub_i++)
-            {
-               for(int sub_j = 0; sub_j < 3; sub_j++)
-               {
-                  int num = n->sudo[i+sub_i][j+sub_j];
-                  contador_submatriz[num]++;
-                  if(contador_submatriz[num] > 1) return 0;
+   for (int i = 0; i < 9; i += 3) {
+       for (int j = 0; j < 9; j += 3) {
+           int contador_submatriz[10] = {0}; // Arreglo de contadores
+           for (int sub_i = 0; sub_i < 3; sub_i++) {
+               for (int sub_j = 0; sub_j < 3; sub_j++) {
+                   int num = n->sudo[i + sub_i][j + sub_j];
+                   contador_submatriz[num]++;
+                   if (contador_submatriz[num] > 1) return 0; // Si el número se repite, la submatriz no es válida
                }
-            }
-         }
-      }
-
-   //reviso las filas
-   for(int k = 0; k < 9; k++)
-   {
-      int contador_filas[10] = {0};
-      for(int x = 0; x < 9; x++)
-      {
-         int num = n->sudo[k][x];
-         contador_filas[num]++;
-         if(contador_filas[num] > 1) return 0;
-      }
+           }
+       }
    }
 
-   //reviso las columnas
-   for (int j = 0; j < 9; j++) {
-        int contador[10] = {0};
-        for (int i = 0; i < 9; i++) {
-            int num = n->sudo[i][j];
-            contador[num]++;
-            if (contador[num] > 1) {
-                return 0;
-            }
-           
-        }
-    }
+   // Verificar filas y columnas
+   for (int k = 0; k < 9; k++) {
+       int contador_filas[10] = {0};
+       int contador_columnas[10] = {0};
+       for (int x = 0; x < 9; x++) {
+           int num_fila = n->sudo[k][x];
+           int num_columna = n->sudo[x][k];
+           contador_filas[num_fila]++;
+           contador_columnas[num_columna]++;
+           if (contador_filas[num_fila] > 1 || contador_columnas[num_columna] > 1) return 0;
+       }
+   }
 
 
    
