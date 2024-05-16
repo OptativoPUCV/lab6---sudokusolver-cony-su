@@ -108,6 +108,7 @@ Modifique la función get_adj_nodes para que sólo los nodos válidos sean retor
 
 List* get_adj_nodes(Node* n)
 {
+
     List* list = createList();
     int i, j;
    //recorro la matriz
@@ -119,8 +120,9 @@ List* get_adj_nodes(Node* n)
          {
             for(int k = 1; k < 10; k++) //recorro los numeros del 1 al 9
             {
-               Node *aux = copy(n); //creo un aux que es una copia del nodo
-               aux->sudo[i][j] = k; //le asigno el valor k en donde habia un 0
+               //creo un aux que es una copia del nodo
+               n->sudo[i][j] = k; //le asigno el valor k en donde habia un 0
+               Node *aux = copy(n);
                if(is_valid(aux)) pushBack(list, aux); //agregel nodo a la lista
             }
          }
