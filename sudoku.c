@@ -75,6 +75,31 @@ int is_valid(Node* n)
          }
       }
 
+   //reviso las filas
+   for(int k = 0; k < 9; k++)
+   {
+      int contador_filas[9] = {0};
+      for(int x = 0; x < 9; x++)
+      {
+         int num = n->sudo[k][x];
+         contador_filas[num-1]++;
+         if(contador_filas[num-1] > 1) return 0;
+      }
+   }
+
+   for (int j = 0; j < 9; j++) {
+        int contador[9] = {0};
+        for (int i = 0; i < 9; i++) {
+            int num = n->sudo[i][j];
+            contador[num - 1]++;
+            if (contador[num - 1] > 1) {
+                return 0;
+            }
+        }
+    }
+
+
+   
    /*for(int k = 0; k < 9; k++) //filas
       {
          int contador_fila[9]= {0};
