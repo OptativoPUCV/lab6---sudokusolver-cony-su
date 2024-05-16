@@ -45,7 +45,18 @@ void print_node(Node* n){
     printf("\n");
 }
 
-int is_valid(Node* n){
+/*
+No se repitan números en las filas
+No se repitan números en las columnas
+No se repitan números en las submatrices de 3x3
+Si el estado es válido la función retorna 1, si no lo es retorna 0.
+
+Para marcar los números que vayan apareciendo en una fila/columna/submatriz puede usar un arreglo de enteros de largo 10 inicializado con 0s. Cada vez que aparezca un número i, verifique que la casilla i del arreglo sea igual a 0, luego márquela con un '1'. Si la casilla es '1' quiere decir que el número ya estaba marcado por lo que la fla/columna/submatriz no es válida.
+*/
+
+
+int is_valid(Node* n)
+{
 
     return 1;
 }
@@ -68,24 +79,38 @@ List* get_adj_nodes(Node* n)
    {
       for(j = 0; j < 9; j++)
       {
-         if(n->sudo[i][j] == 0)
+         if(n->sudo[i][j] == 0) //si encuentro un 0
          {
-            for(int k = 1; k < 10; k++)
+            for(int k = 1; k < 10; k++) //recorro los numeros del 1 al 9
             {
-               Node *aux = copy(n);
-               aux->sudo[i][j] = k;
-               pushBack(list, aux);
-               
+               Node *aux = copy(n); //creo un aux que es una copia del nodo
+               aux->sudo[i][j] = k; //le asigno el valor k en donde habia un 0
+               pushBack(list, aux); //agregel nodo a la lista
             }
          }
       }
    }
-   
     return list;
 }
 
+/*
+Implemente la función int is_final(Node * n). Esta función retorna 1 si el nodo corresponde a un nodo final (es decir, todos los valores de la matriz son distintos a 0) y 0 en caso contrario.
 
-int is_final(Node* n){
+Ya está listo el grafo implícito, ahora necesitamos construir un método de búsqueda que a partir del estado inicial sea capaz de explorar el grafo de manera sistemática hasta alcanzar un nodo final.
+*/
+
+
+int is_final(Node* n)
+{
+   int i, j;
+   for(i = 0; i < 9; i++)
+   {
+      for(j = 0; j < 9; j++)
+      {
+         if(n->sudo[i][j] == 0)return 1;
+      }
+   }
+   
     return 0;
 }
 
