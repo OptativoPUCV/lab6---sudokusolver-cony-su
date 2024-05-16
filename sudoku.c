@@ -58,38 +58,46 @@ Para marcar los números que vayan apareciendo en una fila/columna/submatriz pue
 int is_valid(Node* n)
 {
 
-   for (int i = 0; i < 9; i += 3) {
-       for (int j = 0; j < 9; j += 3) {
-           int contador_submatriz[10] = {0}; // Arreglo de contadores
-           for (int sub_i = 0; sub_i < 3; sub_i++) {
-               for (int sub_j = 0; sub_j < 3; sub_j++) {
-                   int num = n->sudo[i + sub_i][j + sub_j];
-                   if (num != 0) { // Solo contar números diferentes de cero
-                       contador_submatriz[num]++;
-                       if (contador_submatriz[num] > 1) return 0; // Si el número se repite, la submatriz no es válida
-                   }
+   for(int i = 0; i < 9; i+=3) //recorro las filas de 3 en 3
+      {
+         for(int j = 0; j < 9; j+=3) //recorro las columnas de 3 en 3
+         {
+            int contador_submatriz[10]= {0}; //inicializo el arreglo de contadores
+            for(int sub_i = 0; sub_i < 3; sub_i++) //recorro las filas de la submatriz
+            {
+               for(int sub_j = 0; sub_j < 3; sub_j++) //recorro las columnas de la submatriz
+               {
+                  int num = n->sudo[i+sub_i][j+sub_j]; //obtengo el numero de la submatriz
+                  contador_submatriz[num]++; //incremento el contador del numero
+                  if(contador_submatriz[num] > 1 && num != 0) return 0; //si el numero se repite, la submatriz no es valida
                }
-           }
-       }
+            }
+         }
+      }
+
+   //reviso las filas
+   for(int k = 0; k < 9; k++)
+   {
+      int contador_filas[10] = {0};
+      for(int x = 0; x < 9; x++)
+      {
+         int num = n->sudo[k][x];
+         contador_filas[num]++;
+         if(contador_filas[num] > 1 && num != 0) return 0;
+      }
    }
 
-   // Verificar filas y columnas
-   for (int k = 0; k < 9; k++) {
-       int contador_filas[10] = {0};
-       int contador_columnas[10] = {0};
-       for (int x = 0; x < 9; x++) {
-           int num_fila = n->sudo[k][x];
-           int num_columna = n->sudo[x][k];
-           if (num_fila != 0) { // Solo contar números diferentes de cero
-               contador_filas[num_fila]++;
-               if (contador_filas[num_fila] > 1) return 0;
-           }
-           if (num_columna != 0) { // Solo contar números diferentes de cero
-               contador_columnas[num_columna]++;
-               if (contador_columnas[num_columna] > 1) return 0;
-           }
-       }
-   }
+   //reviso las columnas
+   for (int j = 0; j < 9; j++) {
+        int contador[10] = {0};
+        for (int i = 0; i < 9; i++) 
+        {
+            int num = n->sudo[i][j];
+            contador[num]++;
+            if (contador[num] > 1 && num != 0) return 0;
+ 
+        }
+    }
 
 
    
