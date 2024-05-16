@@ -75,15 +75,17 @@ int is_valid(Node* n)
          }
       }
 
-   for (int k = 0; k < 9; k++) {
-       int contador_filas[10] = {0};
-       int contador_columnas[10] = {0};
-       for (int x = 0; x < 9; x++) {
-           int num_fila = n->sudo[k][x];
-           int num_columna = n->sudo[x][k];
-           contador_filas[num_fila]++;
-           contador_columnas[num_columna]++;
-           if ((contador_filas[num_fila] > 1 && num_fila != 0) || (contador_columnas[num_columna] > 1 && num_columna != 0)) return 0;
+   for (int k = 0; k < 9; k++) 
+   {
+      int contador_filas[10] = {0};
+      int contador_columnas[10] = {0};
+      for (int x = 0; x < 9; x++) 
+      {
+         int num_fila = n->sudo[k][x];
+         int num_columna = n->sudo[x][k];
+         contador_filas[num_fila]++;
+         contador_columnas[num_columna]++;
+         if ((contador_filas[num_fila] > 1 && num_fila != 0) || (contador_columnas[num_columna] > 1 && num_columna != 0)) return 0;
        }
    }
 
