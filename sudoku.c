@@ -151,7 +151,46 @@ int is_final(Node* n)
     return 1;
 }
 
-Node* DFS(Node* initial, int* cont){
+/*
+   Implemente la función Node* DFS(Node* n, int* cont). Esta función realiza una búsqueda en profundidad a partir del nodo n. El algoritmo es el siguiente:
+   Cree un stack S (pila) e inserte el nodo.
+   Mientras el stack S no se encuentre vacío:
+   a) Saque y elimine el primer nodo de S.
+   b) Verifique si corresponde a un estado final, si es así retorne el nodo.
+   c) Obtenga la lista de nodos adyacentes al nodo.
+   d) Agregue los nodos de la lista (uno por uno) al stack S.
+   e) Libere la memoria usada por el nodo.
+   Si terminó de recorre el grafo sin encontrar una solución, retorne NULL.
+   Almacene en la variable cont, la cantidad de iteraciones que realiza el algoritmo.
+   Puede ver un código de ejemplo en las diapos.
+   Recuerde revisar las operaciones del TDA Stack en el archivo list.h.
+*/
+
+Node* DFS(Node* initial, int* cont)
+{
+   Stack* S = createStack();
+   push(S, initial);
+   int contador = 0;
+   while(!is_empty(S))
+   {
+      Node* n = top(S);
+      pop(S);
+      if(is_final(n)) return n;
+      else
+      {
+         List *lista = get_adj_nodes(n);
+         Node* aux = first(lista);
+         while(aux != NULL)
+         {
+            push(S, aux);
+            aux = next(lista);
+         }
+         free(aux);
+      }
+      contador++;
+   }
+
+   *cont = contador;
   return NULL;
 }
 
