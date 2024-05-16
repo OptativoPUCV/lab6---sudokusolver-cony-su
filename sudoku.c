@@ -84,9 +84,11 @@ int is_valid(Node* n)
          int num = n->sudo[k][x];
          contador_filas[num-1]++;
          if(contador_filas[num-1] > 1) return 0;
+         break;
       }
    }
 
+   //reviso las columnas
    for (int j = 0; j < 9; j++) {
         int contador[9] = {0};
         for (int i = 0; i < 9; i++) {
